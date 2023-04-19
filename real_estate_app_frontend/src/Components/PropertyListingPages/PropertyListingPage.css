@@ -1,0 +1,204 @@
+#searchPPD {
+    width: 200px;
+    border-radius: 10px;
+}
+
+#serchInput {
+    border-radius: 20px 0px 0px 20px;
+}
+
+#searchbtn span {
+    border-radius: 0px 20px 20px 0px;
+}
+
+#addPropbtn {
+    height: 38px;
+    border-radius: 20px 20px;
+}
+
+#data {
+    overflow-x: scroll;
+}
+
+#dataTable {
+    width: 70%;
+    box-shadow: 0px 0px 1px 2px gray;
+    animation: translateTable 1s linear;
+}
+@keyframes translateTable{
+    from{
+        transform: translate(100%);
+   }
+   to{
+    transform: translate(0%);
+   }
+}
+
+#dataTable tbody tr:hover {
+    background-color: beige;
+}
+
+#viewData,
+#editData {
+    color: white;
+    font-size: large;
+}
+
+#dataContainer {
+    animation: listingPageAni 0.9s linear;
+}
+
+@keyframes listingPageAni {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0%);
+    }
+}
+
+#listingPage {
+    animation: listingPage 0.9s linear 0.2s;
+}
+
+@keyframes listingPage {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0%);
+    }
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}
+
+#singlePropData {
+    max-width: 800px;
+    height: 500px;
+    overflow-y: scroll;
+    align-self: center;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px 5px gray;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    animation: dataAnimation 0.5s linear 0.2s;
+}
+@keyframes dataAnimation{
+    from{
+        transform: translateY(100%);
+    }to{
+        transform: translateY(0%);
+    }
+}
+
+#stickyHead {
+    width: 100%;
+    position: sticky;
+    top: 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.singleDataCard {
+    margin-left: 10%;
+}
+
+.singleData {
+    gap: 10px;
+}
+
+.singleData:hover {
+    padding-left: 10px;
+    background-color: antiquewhite;
+    cursor: pointer;
+}
+
+#singlePropData nav {
+    position: absolute;
+    bottom: 0px;
+    align-self: center;
+}
+
+#dataCancle {
+    position: absolute;
+    right: 10px;
+}
+
+.singleData {
+    display: flex;
+    align-items: flex-start;
+}
+#loadProp{
+    width: 200px;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: larger;
+}
+
+#loader {
+    border: 5px dotted #ee8a8a;
+    border-radius: 50%;
+    border-top: 5px dotted #3498db;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+        border-top: 5px dotted #a934db;
+    }
+    25%{
+        border-right: 5px dotted rgb(32, 162, 218);
+    }
+    50%{
+        border-bottom: 5px dotted #a934db;
+    }
+    75%{
+        border-left: 5px dotted #3498db;
+    }
+    100% {
+        transform: rotate(360deg);
+        border-top: 5px dotted #db34ca;
+    }
+}
+#imageCards{
+    width: 500px;
+    height: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    overflow-y: scroll;
+    gap: 20px;
+    border-radius: 20px;
+    background-color: #3498db;
+    box-shadow: 0px 0px 10px 5px rgb(246, 159, 159);
+    font-size: larger;
+}
+
+.fetchedimg{
+    width: 100%;
+}
+
+#pagination{
+    display: flex;
+    flex-direction: row;
+}
+
+@media screen and (max-width:1200px) {
+    #dataTable {
+        width: 100%;
+    }
+}

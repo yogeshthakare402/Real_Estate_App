@@ -1,0 +1,85 @@
+#sideNav{
+    width: 16rem;
+    background-color: rgb(192, 255, 255);
+    background-image: url("https://img.lovepik.com/background/20211029/medium/lovepik-real-estate-blue-starry-background-banner-image_605774553.jpg");
+    background-size: cover;
+    animation: sideNavAni 1s linear;
+}
+@keyframes sideNavAni {
+    from{
+        transform: translate(-100%);
+    }
+    to{
+        transform: translate(0%);
+    }
+}
+
+#dataContainer{
+    background-image: url("https://img.freepik.com/premium-photo/small-wooden-house-light-blue-background-real-estate-residential-building-concept_625883-310.jpg");
+    background-size: cover;
+    position: relative;
+}
+#navbarDropdown{
+    cursor: pointer;
+}
+.dropdown-menu button{
+    margin-top: 5px;
+    width: 100%;
+    background-color: rgb(42, 220, 244);
+    position: absolute;
+    bottom: 0px;
+}
+.dropdown-menu button:hover{
+    background-color: rgb(8, 145, 163);
+}
+
+#topNav{
+    background-image: url("https://us.123rf.com/450wm/jittawit/jittawit2105/jittawit210500236/168300431-white-paper-house-designs-arranged-separately-on-blue-background-the-empty-space-can-include.jpg?ver=6");
+    background-size: cover;
+    animation: listingPage 0.9s linear 0.2s;
+}
+
+@keyframes listingPage {
+    from{
+        display: none;
+        transform: translateX(100%);
+    }
+    to{
+        display: block;
+        transform: translateX(0%);
+    }
+}
+
+@media screen and (max-width:375px){
+    #sideNav{
+        width: 50px;
+        background-color: red;
+        
+    }
+    #sideNav div{
+        padding-left: 0;
+        margin-left: 0;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+}
+
+#profileCard{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 20px;
+}
+
+#profile{
+    width: 100px;
+    height: 150px;
+    font-size: 100px;
+    align-self: center;
+}
+.list-group{
+    text-align: left;
+    margin-bottom: 20px;
+}
