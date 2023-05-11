@@ -1,21 +1,53 @@
 import React, { useState } from 'react';
 import './PropertyListingPage.css';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function SingleProperty({ singlePropData, setShowSingleProp }) {
     console.log(singlePropData[0]);
     const [page, setPage] = useState(1)
-
+    let navigate = useNavigate()
     const returnBack = () => {
         setShowSingleProp(false)
     }
 
-    // to get photos
-    // let url = "https://real-estate-app-zedu.onrender.com/";
-    // let urlLocal = "http://localhost:8000/";
+    let token = localStorage.getItem("token");
+    let id = localStorage.getItem("userid");
+
+    const deleteProperty = ()=>{
+        let deleteId = singlePropData[0]._id;
+        console.log(deleteId);
+        // let url = `https://real-estate-app-zedu.onrender.com/api/users/property/delete/${deleteId}`;
+        let url = `http://localhost:8000/api/users/property/delete/${deleteId}`;
+        axios.delete(url,{
+            headers: {
+                'token': token,
+                'id': id,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+            .then((res) => {
+                if (res.data.status === "Success") {
+                    setShowSingleProp(false)
+                } else if(res.statusText === "Forbidden"){
+                    alert("Session Over Please login Again")
+                    navigate("/");
+                }else if(res.data.status === "Failed"){
+                    alert("Unable to delete property, try again later")
+                    setShowSingleProp(false)
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
+   
 
     return (
         <div id='singlePropData' className='container-fluid card bg-info'>
             <div id='stickyHead' className="">
+                <button id='dataDelete' className='btn btn-danger' onClick={deleteProperty}>Delete</button>
                 <h2>Selected Property Data</h2>
                 <div id='dataCancle' className='btn btn-danger' onClick={returnBack}>X</div>
             </div>
@@ -164,11 +196,11 @@ function SingleProperty({ singlePropData, setShowSingleProp }) {
                                 <span>{singlePropData[0].pincode}</span>
                             </div>
                             <div className='singleData' id='address'>
-                                <label htmlFor="">Address :- </label>
-                                <span>{singlePropData[0].address}</span>
+                                <label htmlFor="" className='mb-0'>Address :- </label>
+                                <span className='d-inline-flex flex-wrap'>{singlePropData[0].address}</span>
                             </div>
                             <div className='singleData' id='landmark'>
-                                <label htmlFor="">Landmark :- </label>
+                                <label htmlFor="" className='mt-1'>Landmark :- </label>
                                 <span>{singlePropData[0].landmark}</span>
                             </div>
                             <div className='singleData'>
