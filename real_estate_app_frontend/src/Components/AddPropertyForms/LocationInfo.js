@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 
-function LocationInfo({ setTrack,setShowForm }) {
+function LocationInfo({ setTrack, setShowForm }) {
   const { formValues, setFormValues, insertImages } = UsePropContext();
   let navigate = useNavigate();
 
@@ -12,73 +12,78 @@ function LocationInfo({ setTrack,setShowForm }) {
     e.preventDefault();
     // console.log(formValues);
     // console.log(insertImages);
-    let formData = new FormData();
-
-    let key = Object.keys(formValues);
-    let value = Object.values(formValues);
-
-    for (let i = 0; i < key.length; i++) {
-      // console.log(key[i], value[i])  
-      formData.append(key[i], value[i]);
-    }
-    Array.from(insertImages).forEach((image) => {
-      formData.append("items", image)
-      console.log(image)
-    })
 
     let token = localStorage.getItem("token");
     let id = localStorage.getItem("userid");
 
     //for render.com
-
     // let url =  `https://real-estate-app-zedu.onrender.com/api/users/property`;
 
     //for local
     // let url = "http://localhost:8000/api/users/property";
+
     //for vercel
     // let url = "https://real-estate-backend-kohl.vercel.app/api/users/property";
+
     if (formValues.ppdId) {
-      console.log("editing prop")
-      // for (let key of formData.entries()) {
-      //   console.log(key)
-      // }
       // let url = `https://real-estate-app-zedu.onrender.com/api/users/property/${formValues._id}`;
       let url = `http://localhost:8000/api/users/property/${formValues._id}`;
+
       axios.patch(url, formValues, {
         headers: {
           'token': token,
           'id': id,
         }
       })
-        .then((res)=>{
-          if(res.data.status==="Success"){
+        .then((res) => {
+          if (res.data.status === "Success") {
             navigate("/property")
             setShowForm(false)
-          }else{
+          } else {
             // console.log(res)
             alert("Unable to update property, try again later")
           }
-          })
+        })
         .catch((err) => {
           console.log(err);
         });
     } else {
+      // Add new property
+      let formData = new FormData();
+
+      let key = Object.keys(formValues);
+      let value = Object.values(formValues);
+
+      for (let i = 0; i < key.length; i++) {
+        formData.append(key[i], value[i]);
+      }
+
+      Array.from(insertImages).forEach((image) => {
+        formData.append("imgfiles", image)
+        // console.log(image)
+      })
+
+      // for (let key of formData.entries()) {
+      //     console.log(key)
+      //   }
+
       // let url = `https://real-estate-app-zedu.onrender.com/api/users/property`;
       let url = `http://localhost:8000/api/users/property`;
-      axios.post(url, formData, {
+
+      axios.post(url, formData,{
         headers: {
           'token': token,
           'id': id,
         }
       })
-        .then((res)=>{
-          if(res.data.status==="Success"){
+        .then((res) => {
+          if (res.data.status === "Success") {
             navigate("/property");
             setShowForm(false);
-          }else{
+          } else {
             alert("Unable to add property, try again later")
           }
-          })
+        })
         .catch((err) => {
           console.log(err);
         });

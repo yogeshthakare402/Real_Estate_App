@@ -86,6 +86,8 @@
     box-shadow: 0px 0px 10px 5px gray;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     animation: dataAnimation 0.5s linear 0.2s;
+    z-index: 2;
+    
 }
 @keyframes dataAnimation{
     from{
@@ -111,6 +113,8 @@
 
 .singleData {
     gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .singleData:hover {
@@ -129,12 +133,16 @@
     position: absolute;
     right: 10px;
 }
+#dataDelete{
+    position: absolute;
+    left: 10px;
+}
 
 .singleData {
     display: flex;
     align-items: flex-start;
 }
-#loadProp{
+.loadProp{
     width: 200px;
     height: 100px;
     display: flex;
@@ -183,13 +191,20 @@
     overflow-y: scroll;
     gap: 20px;
     border-radius: 20px;
-    background-color: #3498db;
+    background-color: #61b7f0;
     box-shadow: 0px 0px 10px 5px rgb(246, 159, 159);
     font-size: larger;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
-.fetchedimg{
+.propimg{
     width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 #pagination{

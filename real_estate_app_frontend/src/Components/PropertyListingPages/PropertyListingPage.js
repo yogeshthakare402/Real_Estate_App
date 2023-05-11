@@ -5,8 +5,6 @@ import { GrAddCircle, GrSearch, GrDocumentImage, GrEdit, GrFormView } from 'reac
 import axios from 'axios';
 import { UsePropContext } from '../../StateManagement/PropertyContext';
 import SingleProperty from './SingleProperty';
-import Profile from './Profile';
-
 
 function PropertyListingPage({ setShowForm }) {
     //fetch data
@@ -19,12 +17,15 @@ function PropertyListingPage({ setShowForm }) {
     const [currentPage, setCurrentPage] = useState(0);
 
     const Previous = () => {
-        if (currentPage > 1) {
+        console.log(currentPage);
+        if (currentPage >=1) {
             setCurrentPage(currentPage - 1)
         }
     }
+
     const NextData = () => {
-        if (currentPage < Math.floor(propertyList / 10)) {
+        // Math.floor(propertyList / 10
+        if (propertyList.length===10) {
             setCurrentPage(currentPage + 1)
         }
     }
@@ -46,12 +47,13 @@ function PropertyListingPage({ setShowForm }) {
 
     let token = localStorage.getItem("token");
     let id = localStorage.getItem("userid");
-    // eslint-disable-next-line
+
     useEffect(() => {
         //for render.com
-        let url = "https://real-estate-app-zedu.onrender.com/api/users/property";
+        // let url = "https://real-estate-app-zedu.onrender.com/api/users/property";
         //for local
-        // let url = "http://localhost:8000/api/users/property";
+        let url = `http://localhost:8000/api/users/property/${currentPage}`;
+        console.log(currentPage);
         //for vercel
         // let url = "https://real-estate-backend-kohl.vercel.app/api/users/property"
 
@@ -71,10 +73,11 @@ function PropertyListingPage({ setShowForm }) {
                 setPropertyList(response.data.property);
                 setShowProperty(response.data.property);
                 setLoading(false)
+                console.log(propertyList);
             }
         }).catch((err) => console.log(err));
-
-    }, [id, navigate, token, setPropertyList, setShowProperty]);
+// eslint-disable-next-line 
+    }, [id, navigate, token, setPropertyList, setShowProperty,currentPage]);
 
     const showPropertyData = (id) => {
         let data = propertyList.filter((data) => {
@@ -89,7 +92,7 @@ function PropertyListingPage({ setShowForm }) {
     };
 
     // url for images
-    let url = "https://real-estate-app-zedu.onrender.com/";
+    // let url = "https://real-estate-app-zedu.onrender.com/";
     const showImages = (id) => {
         let data = propertyList.filter((data) => {
             return data.ppdId === id
@@ -134,7 +137,6 @@ function PropertyListingPage({ setShowForm }) {
             setFormValues(data[0])
             setShowForm(true)
             console.log(data)
-            // navigate("")
         }
 
     };
@@ -168,7 +170,7 @@ function PropertyListingPage({ setShowForm }) {
             </div>
             {!showSingleProp &&
                 <div id='data' className='mt-5 d-flex flex-nowrap align-items-center justify-content-center'>
-                    {loading ? (<div id='loadProp'>Loading Properties <div id='loader'></div></div>) : (
+                    {loading ? (<div className='loadProp'>Loading Properties <div id='loader'></div></div>) : (
                         <table className="table table-hover table-sm" id='dataTable'>
                             <thead>
                                 <tr>
@@ -184,7 +186,8 @@ function PropertyListingPage({ setShowForm }) {
                                 </tr>
                             </thead>
                             <tbody>
-                                {propertyList.slice((currentPage * 10), (currentPage * 10 + 10)).map((item, i) => {
+                            {/* .slice((currentPage * 10), (currentPage * 10 + 10)) */}
+                                {propertyList.map((item, i) => {
                                     return <tr key={i}>
                                         <td>{item.ppdId}</td>
                                         <td><GrDocumentImage onClick={() => showImages(item.ppdId)} /></td>
@@ -216,20 +219,23 @@ function PropertyListingPage({ setShowForm }) {
                         </table>)}
                 </div>}
             {showSingleProp && <SingleProperty singlePropData={singlePropData} setShowSingleProp={setShowSingleProp} />}
-            {showImageCard && <div id='imageCards' onClick={() => setShowImageCard(false)}>
+            {showImageCard && (images.length > 0 ? (<div id='imageCards' onClick={() => setShowImageCard(false)}>
                 {images.map((image, i) => {
-                    return <img src={url + image.path} alt={image.originalname} key={i} className='fetchedimg' />
+                    // return <img src={url + image.path} alt={image.originalname} key={i} className='propimg' />
+                    return <img src={image} alt={image} key={i} className='propimg' />
                 })}
+            </div>) : (<div className='loadProp' id='imageCards' onClick={() => setShowImageCard(false)}>Loading Images <div id='loader'></div></div>))}
 
-            </div>}
+            {!showSingleProp && (loading ? (<div></div>) : (
+                <nav aria-label="Page navigation example">
+                    <ul className="pagination justify-content-center align-items-center">
+                        <li className="page-item btn btn-primary btn-sm"><button className="page-link btn btn-primary" onClick={() => { Previous() }}>Previous</button></li>
+                        <li className="page-item"><div className="page-link">{currentPage+1}</div></li>
+                        <li className="page-item btn btn-primary btn-sm"><button className="page-link btn btn-primary" onClick={() => { NextData() }}>Next</button></li>
+                    </ul>
+                </nav>
+            ))}
 
-            <nav aria-label="Page navigation example">
-                <ul className="pagination justify-content-center align-items-center">
-                    <li className="page-item btn btn-primary btn-sm"><button className="page-link btn btn-primary" onClick={() => { Previous() }}>Previous</button></li>
-                    <li className="page-item"><div className="page-link">{currentPage + 1}</div></li>
-                    <li className="page-item btn btn-primary btn-sm"><button className="page-link btn btn-primary" onClick={() => { NextData() }}>Next</button></li>
-                </ul>
-            </nav>
         </div>
     )
 }
