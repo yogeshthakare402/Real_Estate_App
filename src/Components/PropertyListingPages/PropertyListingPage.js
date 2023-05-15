@@ -50,12 +50,12 @@ function PropertyListingPage({ setShowForm }) {
 
     useEffect(() => {
         //for render.com
-        let url = `https://real-estate-app-zedu.onrender.com/api/users/property${currentPage}`;
+        // let url = `https://real-estate-app-zedu.onrender.com/api/users/property/${currentPage}`;
         //for local
         // let url = `http://localhost:8000/api/users/property/${currentPage}`;
         // console.log(currentPage);
         //for vercel
-        // let url = `https://real-estate-backend-kohl.vercel.app/api/users/property${currentPage}`
+        let url = `https://real-estate-backend-kohl.vercel.app/api/users/property/${currentPage}`
 
         axios.get(url, {
             headers: {
