@@ -18,14 +18,14 @@ function PropertyListingPage({ setShowForm }) {
 
     const Previous = () => {
         console.log(currentPage);
-        if (currentPage >=1) {
+        if (currentPage >= 1) {
             setCurrentPage(currentPage - 1)
         }
     }
 
     const NextData = () => {
         // Math.floor(propertyList / 10
-        if (propertyList.length===10) {
+        if (propertyList.length === 10) {
             setCurrentPage(currentPage + 1)
         }
     }
@@ -77,13 +77,15 @@ function PropertyListingPage({ setShowForm }) {
             }
         }).catch((err) => {
             console.log(err);
-            if(err.response.status === 403){
+            if (err.response.status === 403) {
                 alert(" OOOPs! Session Expired")
                 navigate('/')
-              }
+            } else if (err.response.status === 404) {
+                alert("Property not found, please refresh the page")
+            }
         });
-// eslint-disable-next-line 
-    }, [navigate,showSingleProp, currentPage]);
+        // eslint-disable-next-line 
+    }, [navigate, showSingleProp, currentPage]);
 
     const showPropertyData = (id) => {
         let data = propertyList.filter((data) => {
@@ -136,10 +138,10 @@ function PropertyListingPage({ setShowForm }) {
             })
             .catch((err) => {
                 console.log(err);
-                if(err.response.status === 403){
+                if (err.response.status === 403) {
                     alert(" OOOPs! Session Expired")
                     navigate('/')
-                  }
+                }
             });
     }
 
@@ -200,7 +202,7 @@ function PropertyListingPage({ setShowForm }) {
                                 </tr>
                             </thead>
                             <tbody>
-                            {/* .slice((currentPage * 10), (currentPage * 10 + 10)) */}
+                                {/* .slice((currentPage * 10), (currentPage * 10 + 10)) */}
                                 {propertyList.map((item, i) => {
                                     return <tr key={i}>
                                         <td>{item.ppdId}</td>
@@ -244,7 +246,7 @@ function PropertyListingPage({ setShowForm }) {
                 <nav aria-label="Page navigation example">
                     <ul className="pagination justify-content-center align-items-center">
                         <li className="page-item btn btn-primary btn-sm"><button className="page-link btn btn-primary" onClick={() => { Previous() }}>Previous</button></li>
-                        <li className="page-item"><div className="page-link">{currentPage+1}</div></li>
+                        <li className="page-item"><div className="page-link">{currentPage + 1}</div></li>
                         <li className="page-item btn btn-primary btn-sm"><button className="page-link btn btn-primary" onClick={() => { NextData() }}>Next</button></li>
                     </ul>
                 </nav>
