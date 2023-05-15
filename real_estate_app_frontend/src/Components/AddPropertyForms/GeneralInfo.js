@@ -11,6 +11,14 @@ function GeneralInfo({ setTrack }) {
     setInsertImages(e.target.files)
 }
 
+const checkRequiredValues = ()=>{
+  if(formValues.name && formValues.mobile){
+    return true
+  }else{
+    return false
+  }
+}
+
   return (
     <div>
       <form method='POST' action='#'>
@@ -23,7 +31,7 @@ function GeneralInfo({ setTrack }) {
             onChange={(e)=>setFormValues({...formValues,name:e.target.value})}
             className="form-control is-valid" 
             id="name" 
-            placeholder="Owner Name" required />
+            placeholder="Owner Name" required/>
           </div>
 
           <div className="col-md-5 mb-3">
@@ -34,7 +42,7 @@ function GeneralInfo({ setTrack }) {
             onChange={(e)=>setFormValues({...formValues,mobile:e.target.value})} 
             className="form-control is-valid" 
             id="mobile" 
-            placeholder="Enter Mobile Number" required />
+            placeholder="Enter Mobile Number" required={true}/>
           </div>
 
           <div className="col-md-5 mb-3">
@@ -108,7 +116,14 @@ function GeneralInfo({ setTrack }) {
             <button className='btn btn-danger cancelBtn' onClick={() => setTrack(2)}>Cancel</button>
           </div>
           <div className="col-md-5 mb-3">
-            <button type='submit' className='btn btn-success saveBtn' onClick={() => setTrack(4)}>Save & Continue</button>
+            <button type='submit' className='btn btn-success saveBtn' onClick={() => {
+              let check = checkRequiredValues();
+              if(check){
+                setTrack(4)
+              }else{
+                alert("Please fill the specific data")
+              }
+              }}>Save & Continue</button>
           </div>
         </div>
       </form>

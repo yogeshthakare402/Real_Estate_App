@@ -24,11 +24,11 @@ function UserSignInPage() {
         const { userName, password } = userData;
         // console.log(userData)
         //for render.com
-        // let url = "https://real-estate-app-zedu.onrender.com/api/users/login";
+        let url = "https://real-estate-app-zedu.onrender.com/api/users/login";
         //for local
         // let url = "http://localhost:8000/api/users/login"
         //for vercel
-        let url = "https://real-estate-backend-kohl.vercel.app/api/users/login"
+        // let url = "https://real-estate-backend-kohl.vercel.app/api/users/login"
 
         if (userName.length > 0 && password.length > 0) {
             axios.post(url, {
@@ -49,7 +49,6 @@ function UserSignInPage() {
             // alert("Please Enter correct details")
             setErrorMessage(true)
         }
-        // navigate('/property')
     }
 
     return (

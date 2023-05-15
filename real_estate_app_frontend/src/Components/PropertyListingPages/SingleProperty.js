@@ -17,8 +17,11 @@ function SingleProperty({ singlePropData, setShowSingleProp }) {
     const deleteProperty = ()=>{
         let deleteId = singlePropData[0]._id;
         console.log(deleteId);
-        // let url = `https://real-estate-app-zedu.onrender.com/api/users/property/delete/${deleteId}`;
-        let url = `http://localhost:8000/api/users/property/delete/${deleteId}`;
+        //For Render.com
+        let url = `https://real-estate-app-zedu.onrender.com/api/users/property/delete/${deleteId}`;
+        //url for local
+        // let url = `http://localhost:8000/api/users/property/delete/${deleteId}`;
+        
         axios.delete(url,{
             headers: {
                 'token': token,
@@ -40,6 +43,10 @@ function SingleProperty({ singlePropData, setShowSingleProp }) {
             })
             .catch((err) => {
                 console.log(err);
+                if(err.response.status === 403){
+                    alert(" OOOPs! Session Expired")
+                    navigate('/')
+                }
             });
     }
    

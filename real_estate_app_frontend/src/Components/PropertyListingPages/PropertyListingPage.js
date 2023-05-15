@@ -50,12 +50,12 @@ function PropertyListingPage({ setShowForm }) {
 
     useEffect(() => {
         //for render.com
-        // let url = "https://real-estate-app-zedu.onrender.com/api/users/property";
+        let url = `https://real-estate-app-zedu.onrender.com/api/users/property${currentPage}`;
         //for local
-        let url = `http://localhost:8000/api/users/property/${currentPage}`;
-        console.log(currentPage);
+        // let url = `http://localhost:8000/api/users/property/${currentPage}`;
+        // console.log(currentPage);
         //for vercel
-        // let url = "https://real-estate-backend-kohl.vercel.app/api/users/property"
+        // let url = `https://real-estate-backend-kohl.vercel.app/api/users/property${currentPage}`
 
         axios.get(url, {
             headers: {
@@ -75,9 +75,15 @@ function PropertyListingPage({ setShowForm }) {
                 setLoading(false)
                 console.log(propertyList);
             }
-        }).catch((err) => console.log(err));
+        }).catch((err) => {
+            console.log(err);
+            if(err.response.status === 403){
+                alert(" OOOPs! Session Expired")
+                navigate('/')
+              }
+        });
 // eslint-disable-next-line 
-    }, [id, navigate, token, setPropertyList, setShowProperty,currentPage]);
+    }, [navigate,showSingleProp, currentPage]);
 
     const showPropertyData = (id) => {
         let data = propertyList.filter((data) => {
@@ -85,6 +91,7 @@ function PropertyListingPage({ setShowForm }) {
         });
         console.log(data)
         if (data.length) {
+            setImages(data[0].image);
             setSinglePropData(data);
             setShowSingleProp(true);
         }
@@ -108,8 +115,11 @@ function PropertyListingPage({ setShowForm }) {
     };
 
     const soldProperty = (saleid) => {
-        // let url = `https://real-estate-app-zedu.onrender.com/api/users/property/sale/${saleid}`;
-        let url = `http://localhost:8000/api/users/property/sale/${saleid}`;
+        //FOr Render.com
+        let url = `https://real-estate-app-zedu.onrender.com/api/users/property/sale/${saleid}`;
+        //For Local use
+        // let url = `http://localhost:8000/api/users/property/sale/${saleid}`;
+
         axios.patch(url, { status: "Sold", daysLeft: 0 }, {
             headers: {
                 'token': token,
@@ -126,6 +136,10 @@ function PropertyListingPage({ setShowForm }) {
             })
             .catch((err) => {
                 console.log(err);
+                if(err.response.status === 403){
+                    alert(" OOOPs! Session Expired")
+                    navigate('/')
+                  }
             });
     }
 
