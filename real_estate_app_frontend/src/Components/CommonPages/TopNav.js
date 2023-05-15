@@ -23,8 +23,8 @@ function TopNav() {
                         <div className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {userName}
                         </div>
-                        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a className="dropdown-item" href="/profile">Profile</a>
+                        <div id='logoutDropdown' className="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a className="dropdown-item mt-0 pt-0" href="/profile">Profile</a>
                             <div className="dropdown-divider"></div>
                             <button className="dropdown-item" onClick={()=>{
                                 localStorage.removeItem("name");

@@ -19,8 +19,16 @@
     background-size: cover;
     position: relative;
 }
+
+#logoutDropdown{
+    position: absolute;
+    border-radius: 10px;
+}
 #navbarDropdown{
     cursor: pointer;
+}
+.dropdown-item{
+    text-align: center;
 }
 .dropdown-menu button{
     margin-top: 5px;
@@ -28,6 +36,7 @@
     background-color: rgb(42, 220, 244);
     position: absolute;
     bottom: 0px;
+    border-radius: 0px 0px 10px 10px;
 }
 .dropdown-menu button:hover{
     background-color: rgb(8, 145, 163);

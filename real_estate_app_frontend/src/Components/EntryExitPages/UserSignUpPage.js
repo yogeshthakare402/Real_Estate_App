@@ -47,11 +47,11 @@ function UserSignUpPage() {
         let userName = userData.email.split("@")[0];
 
         //for render.com
-        // let url = "https://real-estate-app-zedu.onrender.com/api/users/signup";
+        let url = "https://real-estate-app-zedu.onrender.com/api/users/signup";
         // for local
         // let url = "http://localhost:8000/api/users/signup";
         // for vercel
-        let url = "https://real-estate-backend-kohl.vercel.app/api/users/signup";
+        // let url = "https://real-estate-backend-kohl.vercel.app/api/users/signup";
 
         axios.post(url, {
             username: userName,

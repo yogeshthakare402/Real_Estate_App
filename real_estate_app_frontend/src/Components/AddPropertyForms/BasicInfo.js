@@ -2,7 +2,14 @@ import React from 'react';
 import { UsePropContext } from '../../StateManagement/PropertyContext';
 
 function BasicInfo({setShowForm,setTrack}) {
-const {formValues, setFormValues} = UsePropContext()
+const {formValues, setFormValues} = UsePropContext();
+const checkRequiredValues = ()=>{
+  if(formValues.property){
+    return true
+  }else{
+    return false
+  }
+}
 
   return (
     <div>
@@ -15,7 +22,7 @@ const {formValues, setFormValues} = UsePropContext()
             name='property'
             value={formValues.property}
             onChange={(e)=>setFormValues({...formValues,property:e.target.value})}
-            className="form-control custom-select">
+            className="form-control custom-select" required >
               <option value="#">Select property type</option>
               <option value="Flat">Flat</option>
               <option value="House">House</option>
@@ -116,7 +123,14 @@ const {formValues, setFormValues} = UsePropContext()
             <button className='btn btn-danger cancelBtn' onClick={()=>setShowForm(false)}>Cancel</button>
           </div>
           <div className="col-md-5 mb-3">
-            <button type='submit' className='btn btn-success saveBtn' onClick={()=>setTrack(2)}>Save & Continue</button>
+            <button type='submit' className='btn btn-success saveBtn' onClick={()=>{
+              let check = checkRequiredValues();
+              if(check){
+                setTrack(2)
+              }else{
+                alert("Please fill the specific data")
+              }
+              }}>Save & Continue</button>
           </div>
         </div>
       </form>

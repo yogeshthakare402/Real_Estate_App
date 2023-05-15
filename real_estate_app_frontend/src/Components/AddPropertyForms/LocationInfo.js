@@ -26,8 +26,10 @@ function LocationInfo({ setTrack, setShowForm }) {
     // let url = "https://real-estate-backend-kohl.vercel.app/api/users/property";
 
     if (formValues.ppdId) {
-      // let url = `https://real-estate-app-zedu.onrender.com/api/users/property/${formValues._id}`;
-      let url = `http://localhost:8000/api/users/property/${formValues._id}`;
+      //For render.com
+      let url = `https://real-estate-app-zedu.onrender.com/api/users/property/${formValues._id}`;
+      //for local use
+      // let url = `http://localhost:8000/api/users/property/${formValues._id}`;
 
       axios.patch(url, formValues, {
         headers: {
@@ -45,7 +47,12 @@ function LocationInfo({ setTrack, setShowForm }) {
           }
         })
         .catch((err) => {
+          console.log("this is error");
           console.log(err);
+          if(err.response.status === 403){
+            alert(" OOOPs! Session Expired")
+            navigate('/')
+          }
         });
     } else {
       // Add new property
@@ -67,8 +74,10 @@ function LocationInfo({ setTrack, setShowForm }) {
       //     console.log(key)
       //   }
 
-      // let url = `https://real-estate-app-zedu.onrender.com/api/users/property`;
-      let url = `http://localhost:8000/api/users/property`;
+      //For render.com
+      let url = `https://real-estate-app-zedu.onrender.com/api/users/property`;
+      //for Local use
+      // let url = `http://localhost:8000/api/users/property`;
 
       axios.post(url, formData,{
         headers: {
@@ -85,11 +94,24 @@ function LocationInfo({ setTrack, setShowForm }) {
           }
         })
         .catch((err) => {
-          console.log(err);
+          // console.log("this is error");
+          // console.log(err);
+          if(err.response.status === 403){
+            alert(" OOOPs! Session Expired")
+            navigate('/')
+          }
         });
     }
 
   };
+
+  const checkRequiredValues = ()=>{
+    if(formValues.email && formValues.address){
+      return true
+    }else{
+      return false
+    }
+  }
 
 
   return (
@@ -189,7 +211,12 @@ function LocationInfo({ setTrack, setShowForm }) {
           </div>
           <div className="col-md-5 mb-3">
             <button type='submit' className='btn btn-success saveBtn' onClick={(e) => {
-              submitFormData(e);
+              let check = checkRequiredValues();
+              if(check){
+                submitFormData(e);
+              }else{
+                alert("Please fill the specific data")
+              }
             }}>Save & Continue</button>
           </div>
         </div>

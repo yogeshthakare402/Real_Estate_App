@@ -5,6 +5,14 @@ import { UsePropContext } from '../../StateManagement/PropertyContext';
 function PropertyDetails({ setTrack }) {
   const {formValues, setFormValues} = UsePropContext();
 
+  const checkRequiredValues = ()=>{
+    if(formValues.length && formValues.breadth){
+      return true
+    }else{
+      return false
+    }
+  }
+
   return (
     <div>
       <form method='POST' action='#'>
@@ -186,7 +194,14 @@ function PropertyDetails({ setTrack }) {
             <button className='btn btn-danger cancelBtn' onClick={() => setTrack(1)}>Cancel</button>
           </div>
           <div className="col-md-5 mb-3">
-            <button type='submit' className='btn btn-success saveBtn' onClick={() => setTrack(3)}>Save & Continue</button>
+            <button type='submit' className='btn btn-success saveBtn' onClick={()=>{
+              let check = checkRequiredValues();
+              if(check){
+                setTrack(3)
+              }else{
+                alert("Please fill the specific data")
+              }
+              }}>Save & Continue</button>
           </div>
         </div>
       </form>
