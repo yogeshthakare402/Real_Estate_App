@@ -6,12 +6,12 @@ import {TbArrowBarUp} from 'react-icons/tb';
 
 function SideNav() {
     return (
-        <div id='sideNav' className='navbar-fluid d-flex flex-column align-items-center justify-content-start'>
+        <div id='sideNav' className='navbar-fluid d-flex flex-column align-items-center justify-content-start containt-fit'>
             <img className="logo" alt="logo"
                 style={{ maxHeight: "50px", maxWidth: "60px" }}
                 src="https://cdn5.vectorstock.com/i/1000x1000/45/29/house-gold-leaf-logo-vector-14984529.jpg"
             />
-            <div className='container-fluid mt-md-5'>
+            <div className='container-fluid mt-md-5 d-flex '>
                 <ul className="nav nav-dark flex-column" >
                     <li className="nav-item">
                         <a className="nav-link active d-flex flex-row align-items-center" href="/property">
@@ -28,7 +28,7 @@ function SideNav() {
                     <li className="nav-item">
                     <a className="nav-link text-white d-flex flex-row align-items-center" href="/property">
                             <span className='mr-3'><GiReceiveMoney/></span>
-                            <span className='ms-1 d-none d-sm-inline'>Received Interest</span>
+                            <span className='ms-1 d-none d-sm-inline text-nowrap'>Received Interest</span>
                         </a>
                     </li>
                     <li className="nav-item">

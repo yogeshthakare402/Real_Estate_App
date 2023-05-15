@@ -53,10 +53,10 @@ function SingleProperty({ singlePropData, setShowSingleProp }) {
 
     return (
         <div id='singlePropData' className='container-fluid card bg-info'>
-            <div id='stickyHead' className="">
+            <div id='stickyHead'>
                 <button id='dataDelete' className='btn btn-danger' onClick={deleteProperty}>Delete</button>
                 <h2>Selected Property Data</h2>
-                <div id='dataCancle' className='btn btn-danger' onClick={returnBack}>X</div>
+                <button id='dataCancle' className='btn btn-danger' onClick={returnBack}>X</button>
             </div>
             <hr />
 
@@ -89,7 +89,7 @@ function SingleProperty({ singlePropData, setShowSingleProp }) {
                                 <label htmlFor="">Property Approved :-</label>
                                 <span>{singlePropData[0].propApproved}</span>
                             </div>
-                            <div className='singleData' id='description'>
+                            <div className='singleData description'>
                                 <label htmlFor="">Property Description :- </label>
                                 <span>{singlePropData[0].propDescription}</span>
                             </div>
