@@ -14,38 +14,38 @@ function SideNav() {
             <div className='container-fluid mt-md-5'>
                 <ul className="nav nav-dark flex-column" >
                     <li className="nav-item">
-                        <a className="nav-link active d-flex flex-row align-items-center" href="/propertyListingPage">
+                        <a className="nav-link active d-flex flex-row align-items-center" href="/property">
                             <span className='mr-3'><AiFillHome/></span>
                             <span className='ms-1 d-none d-sm-inline'>Property</span>
                         </a>
                     </li>
                     <li className="nav-item">
-                    <a className="nav-link text-white d-flex flex-row align-items-center" href="/propertyListingPage">
+                    <a className="nav-link text-white d-flex flex-row align-items-center" href="/property">
                             <span className='mr-3'><AiFillBell/></span>
                             <span className='ms-1 d-none d-sm-inline'>PPD Assistance</span>
                         </a>
                     </li>
                     <li className="nav-item">
-                    <a className="nav-link text-white d-flex flex-row align-items-center" href="/propertyListingPage">
+                    <a className="nav-link text-white d-flex flex-row align-items-center" href="/property">
                             <span className='mr-3'><GiReceiveMoney/></span>
                             <span className='ms-1 d-none d-sm-inline'>Received Interest</span>
                         </a>
                     </li>
                     <li className="nav-item">
-                    <a className="nav-link text-white d-flex flex-row align-items-center" href="/propertyListingPage">
+                    <a className="nav-link text-white d-flex flex-row align-items-center" href="/property">
                             <span className='mr-3'><TbArrowBarUp/></span>
                             <span className='ms-1 d-none d-sm-inline'>Sent Interest</span>
                         </a>
                     </li>
                     
                     <li className="nav-item">
-                    <a className="nav-link text-white d-flex flex-row align-items-center" href="/propertyListingPage">
+                    <a className="nav-link text-white d-flex flex-row align-items-center" href="/property">
                             <span className='mr-3'><AiFillEye/></span>
                             <span className='ms-1 d-none d-sm-inline'>Property Views</span>
                         </a>
                     </li>
                     <li className="nav-item">
-                    <a className="nav-link text-white d-flex flex-row align-items-center" href="/propertyListingPage">
+                    <a className="nav-link text-white d-flex flex-row align-items-center" href="/property">
                             <span className='mr-3'><AiFillTag/></span>
                             <span className='ms-1 d-none d-sm-inline'>Tariff Plans</span>
                         </a>
