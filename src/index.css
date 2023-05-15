@@ -6,7 +6,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-image: url("https://img.pikbest.com/backgrounds/20190718/real-estate-banner-poster-background_1899120.jpg!bw700");
+  background-repeat: no-repeat;
   background-size: cover;
+  object-fit: cover;
 }
 
 code {
