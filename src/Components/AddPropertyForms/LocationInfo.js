@@ -113,7 +113,6 @@ function LocationInfo({ setTrack, setShowForm }) {
     }
   }
 
-
   return (
     <div>
       <form method='POST' action='#'>
