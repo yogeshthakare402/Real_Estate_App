@@ -17,7 +17,9 @@
 }
 
 #data {
-    overflow-x: scroll;
+    overflow: auto;
+    justify-content: center;
+    /* overflow-x: scroll; */
 }
 
 #dataTable {
@@ -25,13 +27,15 @@
     box-shadow: 0px 0px 1px 2px gray;
     animation: translateTable 1s linear;
 }
-@keyframes translateTable{
-    from{
+
+@keyframes translateTable {
+    from {
         transform: translate(100%);
-   }
-   to{
-    transform: translate(0%);
-   }
+    }
+
+    to {
+        transform: translate(0%);
+    }
 }
 
 #dataTable tbody tr:hover {
@@ -87,12 +91,15 @@
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     animation: dataAnimation 0.5s linear 0.2s;
     z-index: 2;
-    
+
 }
-@keyframes dataAnimation{
-    from{
+
+@keyframes dataAnimation {
+    from {
         transform: translateY(100%);
-    }to{
+    }
+
+    to {
         transform: translateY(0%);
     }
 }
@@ -103,12 +110,15 @@
     top: 0px;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
 }
 
 .singleDataCard {
     margin-left: 10%;
+    height: 250px;
+    overflow: scroll;
 }
 
 .singleData {
@@ -133,7 +143,8 @@
     position: absolute;
     right: 10px;
 }
-#dataDelete{
+
+#dataDelete {
     position: absolute;
     left: 10px;
 }
@@ -142,7 +153,8 @@
     display: flex;
     align-items: flex-start;
 }
-.loadProp{
+
+.loadProp {
     width: 200px;
     height: 100px;
     display: flex;
@@ -167,27 +179,32 @@
         transform: rotate(0deg);
         border-top: 5px dotted #a934db;
     }
-    25%{
+
+    25% {
         border-right: 5px dotted rgb(32, 162, 218);
     }
-    50%{
+
+    50% {
         border-bottom: 5px dotted #a934db;
     }
-    75%{
+
+    75% {
         border-left: 5px dotted #3498db;
     }
+
     100% {
         transform: rotate(360deg);
         border-top: 5px dotted #db34ca;
     }
 }
-#imageCards{
+
+#imageCards {
     width: 500px;
     height: 500px;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     overflow-y: scroll;
     gap: 20px;
     border-radius: 20px;
@@ -201,13 +218,13 @@
     flex-wrap: wrap;
 }
 
-.propimg{
+.propimg {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-#pagination{
+#pagination {
     display: flex;
     flex-direction: row;
 }
@@ -216,4 +233,39 @@
     #dataTable {
         width: 100%;
     }
+}
+
+@media screen and (max-width:550px) {
+    #data {
+        justify-content: flex-start;
+    }
+}
+
+@media screen and (min-width:360px) and (max-width:560px) {
+    #sideNav {
+        width: fit-content;
+    }
+}
+
+@media screen and (max-width:740px) {
+    #stickyHead button {
+        position: relative;
+        align-self: center;
+        top: 0px;
+        left: 0px;
+    }
+
+    #dataDelete {
+        order: 1;
+        margin-right: 5px;
+    }
+
+    #dataCancle {
+        order: 2;
+    }
+
+    #stickyHead h2 {
+        order: 3;
+    }
+
 }

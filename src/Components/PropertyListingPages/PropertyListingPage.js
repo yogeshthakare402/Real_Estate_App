@@ -185,9 +185,9 @@ function PropertyListingPage({ setShowForm }) {
                 </button>
             </div>
             {!showSingleProp &&
-                <div id='data' className='mt-5 d-flex flex-nowrap align-items-center justify-content-center'>
+                <div id='data' className='mt-5 d-flex flex-nowrap align-items-center'>
                     {loading ? (<div className='loadProp'>Loading Properties <div id='loader'></div></div>) : (
-                        <table className="table table-hover table-sm" id='dataTable'>
+                        <table className="table table-fixed table-hover table-sm" id='dataTable'>
                             <thead>
                                 <tr>
                                     <th scope="col">PPD ID</th>
@@ -197,7 +197,7 @@ function PropertyListingPage({ setShowForm }) {
                                     <th scope="col">Area</th>
                                     <th scope="col">Views</th>
                                     <th scope="col">Status</th>
-                                    <th scope="col">Days Left</th>
+                                    <th scope="col" className='text-nowrap'>Days Left</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -234,7 +234,10 @@ function PropertyListingPage({ setShowForm }) {
                             </tbody>
                         </table>)}
                 </div>}
-            {showSingleProp && <SingleProperty singlePropData={singlePropData} setShowSingleProp={setShowSingleProp} />}
+            {showSingleProp && <div id='data' className='mt-5 d-flex flex-nowrap align-items-center'>
+                <SingleProperty singlePropData={singlePropData} setShowSingleProp={setShowSingleProp} />
+            </div>}
+            
             {showImageCard && (images.length > 0 ? (<div id='imageCards' onClick={() => setShowImageCard(false)}>
                 {images.map((image, i) => {
                     // return <img src={url + image.path} alt={image.originalname} key={i} className='propimg' />
